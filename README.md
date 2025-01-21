@@ -1,5 +1,7 @@
 # Tang Nano 9K Minimal HDMI Example
 
+![image](https://github.com/user-attachments/assets/f6ecfec0-893a-4c8f-b0a0-129df81732de)
+
 I got a Tang Nano 9K FPGA dev board, it's my first FPGA. I got it on Aliexpress. It has an HDMI port right on it which is real nice.
 
 I wanted to find a barebones example that uses the HDMI port to send an visual pattern to a display so I could see how the protocol works. The official examples were either too complex for a beginner like me, or were for another board. 
