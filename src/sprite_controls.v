@@ -7,7 +7,7 @@ assign move_btn = ~btn;
 
 always @(posedge move_btn) begin
     if (~&pos) begin 
-        pos <= pos + 1;
+        pos <= pos + 100;
     end else begin
         pos <= 0;
     end
