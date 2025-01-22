@@ -2,6 +2,7 @@
 
 module top(
   input clk,
+  input btn1,
   output led_n,
   output [3:0] hdmi_tx_n,
   output [3:0] hdmi_tx_p
@@ -35,6 +36,8 @@ module top(
 /*1600x1200@57.4Hz*/ //.H_RESOLUTION(1600),.V_RESOLUTION(1200),.H_FRONT_PORCH( 8),.H_SYNC( 32),.H_BACK_PORCH( 40),.V_FRONT_PORCH(19),.V_SYNC(8),.V_BACK_PORCH( 6),.H_SYNC_POLARITY(1),.V_SYNC_POLARITY(0)
   )ds(.i_pixel_clk(hdmi_clk), .o_hve(hve), .o_x(x), .o_y(y)); // Produce video sync signal
   reg [7:0] r, g, b;
-  pattern display_pattern(.clock(hdmi_clk), .x(x), .y(y), .r(r), .g(g), .b(b));
+  reg [9:0] spritePos;
+  sprite_controls sprite_controls(.btn(btn1), .pos(spritePos));
+  pattern display_pattern(.clock(hdmi_clk), .spritePos(spritePos), .x(x), .y(y), .r(r), .g(g), .b(b));
   hdmi hdmi_out(.reset(~hdmi_clk_lock), .hdmi_clk(hdmi_clk), .hdmi_clk_5x(hdmi_clk_5x), .hve(hve), .rgb({8'(r), 8'(g), 8'(b)}), .hdmi_tx_n(hdmi_tx_n), .hdmi_tx_p(hdmi_tx_p));
 endmodule
